@@ -34,6 +34,17 @@ class Board extends React.Component {
     });
   }
 
+  backBefore() {
+    if(this.state.squaresHistories.length === 1) return;
+    const newHistories = this.state.squaresHistories.slice(0, this.state.squaresHistories.length - 1);
+    console.log(newHistories);
+    this.setState({
+      squares: newHistories[newHistories.length - 1],
+      squaresHistories: newHistories,
+      xIsNest: !this.state.xIsNest,
+    })
+  }
+
   renderSquare(i) {
     return (
       <Square
@@ -70,6 +81,7 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
+        <button onClick={() => {this.backBefore()}}>ひとつ前へ</button>
       </div>
     );
   }
