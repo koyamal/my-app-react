@@ -25,16 +25,16 @@ class Board extends React.Component {
   //   });
   // }
 
-  backBefore() {
-    if(this.state.squaresHistories.length === 1) return;
-    const newHistories = this.state.squaresHistories.slice(0, this.state.squaresHistories.length - 1);
-    console.log(newHistories);
-    this.setState({
-      squares: newHistories[newHistories.length - 1],
-      squaresHistories: newHistories,
-      xIsNest: !this.state.xIsNest,
-    })
-  }
+  // backBefore() {
+  //   if(this.state.squaresHistories.length === 1) return;
+  //   const newHistories = this.state.squaresHistories.slice(0, this.state.squaresHistories.length - 1);
+  //   console.log(newHistories);
+  //   this.setState({
+  //     squares: newHistories[newHistories.length - 1],
+  //     squaresHistories: newHistories,
+  //     xIsNest: !this.state.xIsNest,
+  //   })
+  // }
 
   renderSquare(i) {
     return (
@@ -63,7 +63,7 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-        <button onClick={() => {this.backBefore()}}>ひとつ前へ</button>
+        {/* <button onClick={() => {this.backBefore()}}>ひとつ前へ</button> */}
       </div>
     );
   }
@@ -83,14 +83,14 @@ class Game extends React.Component {
     super(props);
     this.state = {
       history: [{
-        squares: Array(9).fill(null),
+        squares: Array(9).fill("null"),
       }],
       xIsNext: true,
     };
   }
 
   handleClick(i) {
-    console.log(this.state)
+    console.log(this.state.history)
     console.log(this.state.xIsNext);
     const squares = this.state.history[this.state.history.length - 1].slice();
     const newHistories = this.state.squaresHistories.slice();
@@ -110,6 +110,7 @@ class Game extends React.Component {
     } else {
       status = 'Next player: ' + (this.state.xIsNext? 'X': 'O');
     }
+    console.log(this.state.history[this.state.history.length - 1].squares)
     return (
       <div className="game">
         <div>
@@ -118,8 +119,8 @@ class Game extends React.Component {
         <p>{status}</p>
         <div className="game-board">
           <Board
-            squares={this.state.history[this.state.history.length - 1]}
-            onClick={this.handleClick}
+            squares={this.state.history[this.state.history.length - 1].squares.slice()}
+            onClick={(i) => this.handleClick(i)}
           />
         </div>
         <div className="game-info">
