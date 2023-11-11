@@ -93,11 +93,11 @@ class Game extends React.Component {
     const squares = this.state.history[this.state.history.length - 1].squares.slice();
     const newHistories = this.state.history.slice();
     if(squares[i] || calculateWinner(squares)) return;
-    squares[i] = this.state.xIsNest? 'X': 'O';
+    squares[i] = this.state.xIsNext? 'X': 'O';
     newHistories.push({squares});
     this.setState({
       history: newHistories,
-      xIsNest: !this.state.xIsNest,
+      xIsNext: !this.state.xIsNext,
     });
   }
   render() {
