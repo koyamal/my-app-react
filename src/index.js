@@ -83,33 +83,33 @@ class Game extends React.Component {
     super(props);
     this.state = {
       history: [{
-        squares: Array(9).fill("null"),
+        squares: Array(9).fill(null),
       }],
       xIsNext: true,
     };
   }
 
   handleClick(i) {
-    console.log(this.state.history)
-    console.log(this.state.xIsNext);
-    const squares = this.state.history[this.state.history.length - 1].slice();
-    const newHistories = this.state.squaresHistories.slice();
+    const squares = this.state.history[this.state.history.length - 1].squares.slice();
+    const newHistories = this.state.history.slice();
     if(squares[i] || calculateWinner(squares)) return;
     squares[i] = this.state.xIsNest? 'X': 'O';
-
+    newHistories.push({squares});
     this.setState({
-      history: this.state.history.push(squares),
+      history: newHistories,
       xIsNest: !this.state.xIsNest,
     });
   }
   render() {
-    const winner = calculateWinner(this.state.history[this.state.history.length - 1]);
+    console.log("his",this.state.history)
+    const winner = calculateWinner(this.state.history[this.state.history.length - 1].squares);
     let status = '';
     if(winner) {
       status = 'Winner: ' + winner;
     } else {
       status = 'Next player: ' + (this.state.xIsNext? 'X': 'O');
     }
+    console.log(this.state.history)
     console.log(this.state.history[this.state.history.length - 1].squares)
     return (
       <div className="game">
