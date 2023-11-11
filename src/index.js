@@ -11,28 +11,19 @@ function Square(props) {
 }
 
 class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      xIsNest: true,
-      squaresHistories: [Array(9).fill(null)],
-    };
-  }
+  // handleClick(i) {
+  //   const squares = this.state.squares.slice();
+  //   const newHistories = this.state.squaresHistories.slice();
+  //   if(squares[i] || calculateWinner(squares)) return;
+  //   squares[i] = this.state.xIsNest? 'X': 'O';
+  //   newHistories.push(squares);
 
-  handleClick(i) {
-    const squares = this.state.squares.slice();
-    const newHistories = this.state.squaresHistories.slice();
-    if(squares[i] || calculateWinner(squares)) return;
-    squares[i] = this.state.xIsNest? 'X': 'O';
-    newHistories.push(squares);
-
-    this.setState({
-      squares: squares,
-      xIsNest: !this.state.xIsNest,
-      squaresHistories: newHistories,
-    });
-  }
+  //   this.setState({
+  //     squares: squares,
+  //     xIsNest: !this.state.xIsNest,
+  //     squaresHistories: newHistories,
+  //   });
+  // }
 
   backBefore() {
     if(this.state.squaresHistories.length === 1) return;
@@ -97,11 +88,27 @@ class Game extends React.Component {
       xIsNext: true,
     };
   }
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    const newHistories = this.state.squaresHistories.slice();
+    if(squares[i] || calculateWinner(squares)) return;
+    squares[i] = this.state.xIsNest? 'X': 'O';
+    newHistories.push(squares);
+
+    this.setState({
+      squares: squares,
+      xIsNest: !this.state.xIsNest,
+      squaresHistories: newHistories,
+    });
+  }
   render() {
     return (
       <div className="game">
+        <div>
+          <button>a</button>
+        </div>
         <div className="game-board">
-          <Board />
+          <Board squares={this.state.history(this.state.history.length - 1)}/>
         </div>
         <div className="game-info">
           <div>{/* status */}</div>
