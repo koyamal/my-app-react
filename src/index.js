@@ -67,7 +67,8 @@ class Game extends React.Component {
     });
   }
   render() {
-    console.log("his",this.state.history)
+    const history = this.state.history;
+    const current = history[history.length - 1];
     const winner = calculateWinner(this.state.history[this.state.history.length - 1].squares);
     let status = '';
     if(winner) {
@@ -85,7 +86,7 @@ class Game extends React.Component {
         <p>{status}</p>
         <div className="game-board">
           <Board
-            squares={this.state.history[this.state.history.length - 1].squares.slice()}
+            squares={current.squares.slice()}
             onClick={(i) => this.handleClick(i)}
           />
         </div>
