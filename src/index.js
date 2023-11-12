@@ -69,21 +69,17 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[history.length - 1];
-    const winner = calculateWinner(this.state.history[this.state.history.length - 1].squares);
+    const winner = calculateWinner(current.squares);
     let status = '';
     if(winner) {
       status = 'Winner: ' + winner;
     } else {
       status = 'Next player: ' + (this.state.xIsNext? 'X': 'O');
     }
-    console.log(this.state.history)
-    console.log(this.state.history[this.state.history.length - 1].squares)
+    // console.log(this.state.history)
+    // console.log(this.state.history[this.state.history.length - 1].squares)
     return (
       <div className="game">
-        <div>
-          <button>a</button>
-        </div>
-        <p>{status}</p>
         <div className="game-board">
           <Board
             squares={current.squares.slice()}
@@ -91,7 +87,7 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
+          <div>{status}</div>
           <ol>{/* TODO */}</ol>
         </div>
       </div>
