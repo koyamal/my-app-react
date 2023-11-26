@@ -96,8 +96,6 @@ class Game extends React.Component {
     } else {
       status = 'Next player: ' + (this.state.xIsNext? 'X': 'O');
     }
-    // console.log(this.state.history)
-    // console.log(this.state.history[this.state.history.length - 1].squares)
     return (
       <div className="game">
         <div className="game-board">
