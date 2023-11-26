@@ -67,7 +67,8 @@ class Game extends React.Component {
     this.setState({
       history: newHistroy,
       xIsNext: !this.state.xIsNext,
-      stepNumber: this.state.history.length,
+      // stepNumber: this.state.history.length,
+      stepNumber: history.length,
     });
   }
 
