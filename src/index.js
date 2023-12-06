@@ -44,6 +44,12 @@ class Board extends React.Component {
   }
 }
 
+class Hello extends React.Component {
+  render() {
+    return (<div>Hello</div>);
+  }
+}
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -97,6 +103,7 @@ class Game extends React.Component {
     }
     return (
       <div className="game">
+        <Hello />
         <div className="game-board">
           <Board
             squares={current.squares.slice()}
